@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  # Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - bandoso-admin
+      - bandoso-api
+    restart: unless-stopped
+    networks:
+      - bandoso-network
+
+  # Frontend React App
+  bandoso-admin:
+    build:
+      context: ./bandoso-admin
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - ./bandoso-admin/.env
+    restart: unless-stopped
+    networks:
+      - bandoso-network
+
+  # Backend FastAPI
+  bandoso-api:
+    build:
+      context: ./bandoso-api
+      dockerfile: Dockerfile
+    env_file:
+      - ./bandoso-api/.env
+    restart: unless-stopped
+    networks:
+      - bandoso-network
+
+networks:
+  bandoso-network:
+    driver: bridge 
