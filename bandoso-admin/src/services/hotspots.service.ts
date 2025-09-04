@@ -8,10 +8,7 @@ import type {
 } from "@/types/pagination.type";
 import { queryData } from "./base.service";
 import { supabase } from "@/lib/supabase";
-import {
-  addChatDocument,
-  deleteChatDocument,
-} from "./documents.service";
+import { addChatDocument, deleteChatDocument } from "./documents.service";
 
 export const getHotspotById = async (
   hotspot_id: string,
@@ -163,13 +160,13 @@ export const pageContentBuilder = (hotspot: Hotspot) => {
     }
   }
   return pageContent;
-}
+};
 
 export const createHotspot = async (
   hotspot: Partial<Hotspot>
 ): Promise<Hotspot> => {
   let ids = [];
-  // generate uuid 
+  // generate uuid
   try {
     let response = await addChatDocument({
       page_content: `Tiêu đề: ${hotspot.title}\nMô tả: ${hotspot.description}\nĐịa chỉ: ${hotspot.address}\nWebsite: ${hotspot.website}`,
@@ -209,17 +206,20 @@ export const updateHotspot = async (
     if (ids) {
       await deleteChatDocument(ids);
     }
-
   } catch (error) {
     console.log("Failed to delete hotspot chunks: " + (error as Error).message);
   }
-  let response = await addChatDocument({
-    page_content: `Tiêu đề: ${hotspot.title}\nMô tả: ${hotspot.description}\nĐịa chỉ: ${hotspot.address}\nWebsite: ${hotspot.website}`,
-    metadata: {
-      hotspot_id: hotspot_id,
-    },
-  });
-  newIds = response.ids;
+  try {
+    let response = await addChatDocument({
+      page_content: `Tiêu đề: ${hotspot.title}\nMô tả: ${hotspot.description}\nĐịa chỉ: ${hotspot.address}\nWebsite: ${hotspot.website}`,
+      metadata: {
+        hotspot_id: hotspot_id,
+      },
+    });
+    newIds = response.ids;
+  } catch (error) {
+    console.log("Failed to add hotspot to chat: " + (error as Error).message);
+  }
 
   const { data, error } = await supabase
     .from("hotspots")

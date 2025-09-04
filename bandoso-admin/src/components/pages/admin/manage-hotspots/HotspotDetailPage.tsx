@@ -7,6 +7,7 @@ import type { Hotspot } from "@/types/hotspots.service.type";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import HotspotDocumentBlock from "../../../blocks/HotspotDocumentBlock";
+import HotspotAssetBlock from "@/components/blocks/HotspotAssetBlock";
 
 export default function HotspotDetailPage() {
   const { hotspotId } = useParams();
@@ -43,6 +44,11 @@ export default function HotspotDetailPage() {
       name: "Tài liệu",
       value: "documents",
       content: <HotspotDocumentBlock currentHotspot={currentHotspot} />,
+    },
+    {
+      name: "Vật phẩm",
+      value: "assets",
+      content: <HotspotAssetBlock currentHotspot={currentHotspot} />,
     },
   ];
 
