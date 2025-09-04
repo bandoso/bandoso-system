@@ -7,49 +7,30 @@ from langchain_qdrant import QdrantVectorStore
 # Initialize Qdrant client using config
 client = QdrantClient(host=config.QDRANT_HOST, port=config.QDRANT_PORT)
 
-def setup_collections():
-    """Setup Qdrant collections if they don't exist"""
-    try:
-        # CHUNK COLLECTION
-        if not client.collection_exists(config.CHUNK_COLLECTION_NAME):
-            client.create_collection(
-                collection_name=config.CHUNK_COLLECTION_NAME,
-                vectors_config=VectorParams(size=config.EMBEDDING_SIZE, distance=Distance.COSINE),
-            )
+# SETUP COLLECTIONS
 
-        # CACHE COLLECTION
-        if not client.collection_exists(config.CACHE_COLLECTION_NAME):
-            client.create_collection(
-                collection_name=config.CACHE_COLLECTION_NAME,
-                vectors_config=VectorParams(size=config.EMBEDDING_SIZE, distance=Distance.COSINE),
-            )
-    except Exception as e:
-        print(f"Error setting up collections: {e}")
-        # Don't fail startup, collections will be created when needed
+## CHUNK COLLECTION
+if not client.collection_exists(config.CHUNK_COLLECTION_NAME):
+   client.create_collection(
+      collection_name=config.CHUNK_COLLECTION_NAME,
+      vectors_config=VectorParams(size=config.EMBEDDING_SIZE, distance=Distance.COSINE),
+   )
 
-def get_doc_vector_store():
-    """Get document vector store"""
-    return QdrantVectorStore(
-        client=client,
-        collection_name=config.CHUNK_COLLECTION_NAME,
-        embedding=embeddings,
-    )
+## CACHE COLLECTION
+if not client.collection_exists(config.CACHE_COLLECTION_NAME):
+   client.create_collection(
+      collection_name=config.CACHE_COLLECTION_NAME,
+      vectors_config=VectorParams(size=config.EMBEDDING_SIZE, distance=Distance.COSINE),
+   )
+   
+doc_vector_store = QdrantVectorStore(
+    client=client,
+    collection_name=config.CHUNK_COLLECTION_NAME,
+    embedding=embeddings,
+)
 
-def get_cache_vector_store():
-    """Get cache vector store"""
-    return QdrantVectorStore(
-        client=client,
-        collection_name=config.CACHE_COLLECTION_NAME,
-        embedding=embeddings,
-    )
-
-# Initialize vector stores
-doc_vector_store = None
-cache_vector_store = None
-
-def init_vector_stores():
-    """Initialize vector stores"""
-    global doc_vector_store, cache_vector_store
-    setup_collections()
-    doc_vector_store = get_doc_vector_store()
-    cache_vector_store = get_cache_vector_store()
+cache_vector_store = QdrantVectorStore(
+    client=client,
+    collection_name=config.CACHE_COLLECTION_NAME,
+    embedding=embeddings,
+)
