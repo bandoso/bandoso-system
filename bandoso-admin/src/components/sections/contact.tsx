@@ -35,7 +35,7 @@ export function ContactSection() {
             </div>
             <h3 className="mt-6 font-semibold text-xl">Đơn vị thực hiện</h3>
             <p className="mt-2 text-muted-foreground">
-              Đoàn trường ĐH SƯ phạm kỸ thuật TP. Hồ Chí Minh
+              Đoàn Trường Đại học Sư phạm Kỹ thuật Tp.HCM
             </p>
             <a
               className="mt-4 font-medium text-primary max-w-lg"

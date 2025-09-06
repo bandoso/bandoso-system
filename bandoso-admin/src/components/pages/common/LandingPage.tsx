@@ -1,18 +1,11 @@
-import DialogWrapper from "@/components/blocks/DialogWrapper";
 import Footer from "@/components/blocks/footer/footer";
 import LoaderBlock from "@/components/blocks/LoaderBlock";
-import MapDialogBlock from "@/components/blocks/MapBlock";
 import Navbar from "@/components/blocks/navbar/navbar";
 import { SectionWrapper } from "@/components/wrappers/SectionWrapper";
 import { SECTION_IDS, SECTIONS_CONFIG } from "@/constants/sections.constants";
 import { useScrollSpy } from "@/hooks/use-scroll-spy";
 import useVRStore from "@/stores/vr.store";
 import { useRef, useEffect } from "react";
-// import { SECTIONS_CONFIG, SECTION_IDS } from "@/constants/sections.constants";
-// import { SectionWrapper } from "../wrappers/SectionWrapper";
-// import { useScrollSpy } from "@/hooks/useScrollSpy";
-// import useVRStore from '@/store/vr.store'
-// import LoaderBlock from '../block/LoaderBlock'
 
 const LandingPage = () => {
   const { loadData, isLoading } = useVRStore((state) => state);

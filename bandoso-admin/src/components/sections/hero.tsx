@@ -1,11 +1,5 @@
 import { RiChatAiFill } from "react-icons/ri";
-import {
-  ArrowUpRight,
-  CirclePlay,
-  Gamepad2,
-  GamepadIcon,
-  LucideGamepad2,
-} from "lucide-react";
+import { ArrowUpRight, CirclePlay, Gamepad2 } from "lucide-react";
 import { Badge } from "../ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -13,18 +7,8 @@ import { AuroraText } from "../magicui/aurora-text";
 import { cn } from "@/lib/utils";
 import { GridPattern } from "../magicui/grid-pattern";
 import { ShineBorder } from "../magicui/shine-border";
-import { InteractiveHoverButton } from "../magicui/interactive-hover-button";
 import MapDialogBlock from "../blocks/MapBlock";
 import useAreaSearchStore from "@/stores/area-search.store";
-
-// import MapBlock from "../block/MapBlock";
-// import { ShineBorder } from "@/components/magicui/shine-border";
-// import { AuroraText } from "@/components/magicui/aurora-text";
-// import { GridPattern } from "../magicui/grid-pattern";
-// import { cn } from "@/lib/utils";
-// import { useNavigate } from "react-router-dom";
-// import useVRStore from "@/store/vr.store";
-
 export default function HeroSection() {
   const { setAreaSearchDialogOpen } = useAreaSearchStore();
 

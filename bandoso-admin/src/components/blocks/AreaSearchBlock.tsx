@@ -1,16 +1,9 @@
 import React, { useMemo, useRef, useState, useEffect } from "react";
 import DialogWrapper from "./DialogWrapper";
-import { Search, SearchIcon, ArrowRight, MapPin, Globe } from "lucide-react";
+import { Search, SearchIcon, Globe } from "lucide-react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
-import { MagicCard } from "../magicui/magic-card";
+
 import { getAreas } from "@/services/areas.service";
 import type { Area } from "@/types/areas.service.type";
 import GradientCardBlock from "./GradientCardBlock";

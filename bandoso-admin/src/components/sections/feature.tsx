@@ -14,7 +14,6 @@ import type { WithJoins } from "@/types/pagination.type";
 const HotspotCard = ({
   preview_image,
   title,
-  hotspot_id,
   description,
   area_name,
 }: {

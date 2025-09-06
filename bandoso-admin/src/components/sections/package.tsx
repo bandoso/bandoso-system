@@ -3,7 +3,7 @@ import { Separator } from "@/components/ui/separator";
 import { CircleCheck } from "lucide-react";
 const packages = [
   {
-    name: "Sinh viên",
+    name: "Học sinh –kỸ Sinh viên",
     description: "Khám phá lịch sử sinh động qua trải nghiệm thực tế ảo.",
     features: [
       "Tiếp cận di tích mọi lúc, mọi nơi",
@@ -29,7 +29,7 @@ const packages = [
     isPopular: false,
   },
   {
-    name: "Cán bộ Đoàn – Đảng",
+    name: "Cán bộ Đoàn – Hội – Đội",
     description:
       "Giải pháp truyền thông sáng tạo, giáo dục truyền thống hiệu quả.",
     features: [
@@ -42,7 +42,6 @@ const packages = [
   },
 ];
 
-import { MailIcon, MapPinIcon } from "lucide-react";
 import { TextAnimate } from "../magicui/text-animate";
 import GradientCardBlock from "../blocks/GradientCardBlock";
 export function PackageSection() {
