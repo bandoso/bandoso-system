@@ -1,49 +1,44 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { CircleCheck } from "lucide-react";
-
 const packages = [
   {
     name: "Sinh viên",
-
-    description:
-      "Get 20 AI-generated portraits with 2 unique styles and filters.",
+    description: "Khám phá lịch sử sinh động qua trải nghiệm thực tế ảo.",
     features: [
-      "5 hours turnaround time",
-      "20 AI portraits",
-      "Choice of 2 styles",
-      "Choice of 2 filters",
-      "2 retouch credits",
+      "Tiếp cận di tích mọi lúc, mọi nơi",
+      "Học lịch sử trực quan",
+      "Tăng khả năng ghi nhớ",
+      "Trò chơi & video 360",
+      "Trải nghiệm học mà chơi",
     ],
-    buttonText: "Get 20 portraits in 5 hours",
+    buttonText: "Khám phá ngay",
   },
   {
     name: "Giáo viên",
     isRecommended: true,
-    description:
-      "Get 50 AI-generated portraits with 5 unique styles and filters.",
+    description: "Công cụ hỗ trợ giảng dạy sinh động, dễ tiếp thu hơn.",
     features: [
-      "3 hours turnaround time",
-      "50 AI portraits",
-      "Choice of 5 styles",
-      "Choice of 5 filters",
-      "5 retouch credits",
+      "Bài giảng gắn liền thực tiễn",
+      "Tài nguyên số phong phú",
+      "Tăng tính tương tác lớp học",
+      "Trực quan hoá nội dung",
+      "Dễ tích hợp vào bài giảng",
     ],
-    buttonText: "Get 50 portraits in 3 hours",
-    isPopular: true,
+    buttonText: "Ứng dụng trong giảng dạy",
+    isPopular: false,
   },
   {
     name: "Cán bộ Đoàn – Đảng",
     description:
-      "Get 100 AI-generated portraits with 10 unique styles and filters.",
+      "Giải pháp truyền thông sáng tạo, giáo dục truyền thống hiệu quả.",
     features: [
-      "1-hour turnaround time",
-      "100 AI portraits",
-      "Choice of 10 styles",
-      "Choice of 10 filters",
-      "10 retouch credits",
+      "Tổ chức tham quan ảo",
+      "Tạo nội dung thu hút giới trẻ",
+      "Lan toả trên mạng xã hội",
+      "Ứng dụng công nghệ vào tuyên truyền",
     ],
-    buttonText: "Get 100 portraits in 1 hour",
+    buttonText: "Tổ chức hoạt động ngay",
   },
 ];
 
@@ -52,8 +47,8 @@ import { TextAnimate } from "../magicui/text-animate";
 import GradientCardBlock from "../blocks/GradientCardBlock";
 export function PackageSection() {
   return (
-    <section className="pt-8 px-4 sm:pt-12 sm:px-6 md:pt-8 lg:px-32  flex w-full justify-center">
-      <div className="container min-h-screen">
+    <section className="pt-8 px-4 pb-32 sm:pt-12 sm:px-6 md:pt-8 lg:px-32  flex w-full justify-center">
+      <div className="container ">
         <h2 className="py-8  text-2xl text-center font-bold md:text-4xl lg:text-5xl">
           <TextAnimate animation="blurIn" as="h1">
             Giá trị mang lại
