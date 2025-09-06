@@ -108,20 +108,30 @@ export const deleteMultipleAreas = async (
 export const countAreas = async (): Promise<any> => {
   const { count, error }: any = await supabase
     .from("areas")
-    .select('*', { count: 'exact', head: true });
+    .select("*", { count: "exact", head: true });
   if (error) {
     throw new Error("Failed to count areas: " + error.message);
   }
-  return count
+  return count;
 };
 
-export const countAreasByAccountId = async (account_id: string): Promise<any> => {
+export const countAreasByAccountId = async (
+  account_id: string
+): Promise<any> => {
   const { count, error }: any = await supabase
     .from("account_areas")
-    .select('*', { count: 'exact', head: true })
+    .select("*", { count: "exact", head: true })
     .eq("account_id", account_id);
   if (error) {
     throw new Error("Failed to count areas by account ID: " + error.message);
   }
-  return count
+  return count;
+};
+
+export const getPreviewAreas = async () => {
+  const { data, error } = await supabase.from("areas").select("*").limit(20);
+  if (error) {
+    throw new Error("Failed to get preview areas: " + error.message);
+  }
+  return data;
 };

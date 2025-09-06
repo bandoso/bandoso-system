@@ -1,22 +1,64 @@
+import DialogWrapper from "@/components/blocks/DialogWrapper";
+import Footer from "@/components/blocks/footer/footer";
+import LoaderBlock from "@/components/blocks/LoaderBlock";
+import MapDialogBlock from "@/components/blocks/MapBlock";
+import Navbar from "@/components/blocks/navbar/navbar";
+import { SectionWrapper } from "@/components/wrappers/SectionWrapper";
+import { SECTION_IDS, SECTIONS_CONFIG } from "@/constants/sections.constants";
+import { useScrollSpy } from "@/hooks/use-scroll-spy";
+import useVRStore from "@/stores/vr.store";
+import { useRef, useEffect } from "react";
+// import { SECTIONS_CONFIG, SECTION_IDS } from "@/constants/sections.constants";
+// import { SectionWrapper } from "../wrappers/SectionWrapper";
+// import { useScrollSpy } from "@/hooks/useScrollSpy";
+// import useVRStore from '@/store/vr.store'
+// import LoaderBlock from '../block/LoaderBlock'
 
 const LandingPage = () => {
+  const { loadData, isLoading } = useVRStore((state) => state);
+
+  useEffect(() => {
+    (async () => {
+      await loadData();
+    })();
+  }, []);
+  const navbarRef = useRef<HTMLElement | null>(null);
+  const { activeSection, scrollToSection } = useScrollSpy({
+    sectionIds: SECTION_IDS,
+    offset: 20,
+  });
+
+  useEffect(() => {
+    console.log("Current active section:", activeSection);
+  }, [activeSection]);
+
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold">Chào mừng đến với VR Project</h1>
-        <p className="text-lg text-muted-foreground">
-          Hệ thống quản lý du lịch ảo
-        </p>
-        <div className="space-x-4">
-          <a
-            href="/dang-nhap"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
-          >
-            Đăng nhập
-          </a>
-        </div>
+    <>
+      {isLoading && <LoaderBlock />}
+
+      <div className="dark bg-background text-foreground w-full min-h-screen">
+        <Navbar
+          ref={navbarRef}
+          activeSection={activeSection}
+          onNavigate={scrollToSection}
+        />
+        {SECTIONS_CONFIG.map((section) => {
+          const Component = section.component;
+          const isHero = section.id === "hero";
+
+          return (
+            <SectionWrapper
+              key={section.id}
+              id={section.id}
+              className={isHero ? "min-h-[100vh]" : ""}
+            >
+              <Component />
+            </SectionWrapper>
+          );
+        })}
+        <Footer />
       </div>
-    </div>
+    </>
   );
 };
 

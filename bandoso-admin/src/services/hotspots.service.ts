@@ -325,3 +325,44 @@ export const countHotspotsByAccountId = async (
 
   return totalCount;
 };
+
+export const getPreviewHotspots = async (
+  area_id: string
+): Promise<Hotspot[]> => {
+  const { data, error } = await supabase
+    .from("hotspots")
+    .select("*")
+    .limit(5)
+    .eq("area_id", area_id);
+  if (error) {
+    throw new Error("Failed to get preview hotspots: " + error.message);
+  }
+  return data;
+};
+
+export const getPreviewHotspotsWithAreas = async (): Promise<
+  WithJoins<Hotspot>[]
+> => {
+  try {
+    const result = await queryData<WithJoins<Hotspot>>(
+      "hotspots",
+      undefined,
+      { limit: 20 },
+      {
+        joins: [
+          {
+            table: "areas",
+            columns: "area_name",
+            foreignKey: "area_id",
+            alias: "area",
+          },
+        ],
+      }
+    );
+    return result.data;
+  } catch (error) {
+    throw new Error(
+      "Failed to get preview hotspots with areas: " + (error as Error).message
+    );
+  }
+};
