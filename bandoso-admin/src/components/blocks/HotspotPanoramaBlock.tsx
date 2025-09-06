@@ -126,7 +126,7 @@ const HotspotPanoramaBlock = ({
       key: "preview_image",
       label: "Ảnh xem trước",
       render: (value: string) => (
-        <div className="w-16 h-16 overflow-hidden rounded-lg border">
+        <div className="w-16 h-auto overflow-hidden rounded-lg border">
           <ImageZoom>
             <img
               src={value}
