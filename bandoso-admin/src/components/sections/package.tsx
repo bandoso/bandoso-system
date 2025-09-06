@@ -3,7 +3,7 @@ import { Separator } from "@/components/ui/separator";
 import { CircleCheck } from "lucide-react";
 const packages = [
   {
-    name: "Học sinh –kỸ Sinh viên",
+    name: "Học sinh – Sinh viên",
     description: "Khám phá lịch sử sinh động qua trải nghiệm thực tế ảo.",
     features: [
       "Tiếp cận di tích mọi lúc, mọi nơi",

@@ -59,6 +59,9 @@ export function FeatureSection() {
   const [selectedAreas, setSelectedAreas] = useState<string[]>([]);
   const [hotspots, setHotspots] = useState(defaultHotspots);
   useEffect(() => {
+    setHotspots(defaultHotspots);
+  }, [defaultHotspots]);
+  useEffect(() => {
     (async () => {
       if (selectedAreas.length === 0) {
         setHotspots(defaultHotspots);
@@ -119,6 +122,7 @@ export function FeatureSection() {
               options={areaOptions}
               value={selectedAreas}
               onChange={setSelectedAreas}
+              className="rounded-full"
               placeholder="Chọn khu vực..."
               searchPlaceholder="Tìm kiếm khu vực..."
               emptyText="Không tìm thấy khu vực nào."
