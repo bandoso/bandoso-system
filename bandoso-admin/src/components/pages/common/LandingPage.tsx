@@ -1,15 +1,13 @@
 import Footer from "@/components/blocks/footer/footer";
-import AI_ICON from "@/assets/AI_ICON.png";
 import LoaderBlock from "@/components/blocks/LoaderBlock";
 import Navbar from "@/components/blocks/navbar/navbar";
-import { Button } from "@/components/ui/button";
+import ChatbotDialogBlock from "@/components/blocks/ChatbotDialogBlock";
 import { SectionWrapper } from "@/components/wrappers/SectionWrapper";
 import { SECTION_IDS, SECTIONS_CONFIG } from "@/constants/sections.constants";
 import { useScrollSpy } from "@/hooks/use-scroll-spy";
 import useVRStore from "@/stores/vr.store";
 import { Facebook } from "lucide-react";
 import { useRef, useEffect } from "react";
-import { RiChatAiFill } from "react-icons/ri";
 
 const LandingPage = () => {
   const { loadData, isLoading } = useVRStore((state) => state);
@@ -77,23 +75,7 @@ const LandingPage = () => {
             </div>
           </div>
 
-          <div
-            onClick={() => {
-              window.open("https://chatbot.hcmute.edu.vn/", "_blank");
-            }}
-            className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-18 lg:h-18 rounded-full glass glass-light flex justify-center items-center glass-hover cursor-pointer transition-all duration-300 hover:scale-105"
-          >
-            <img
-              src={AI_ICON}
-              className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 lg:w-12 lg:h-12 p-1"
-            />
-            <div
-              className="tooltip tooltip-top hidden sm:block"
-              data-tip="Hỗ trợ trực tuyến"
-            >
-              <span></span>
-            </div>
-          </div>
+          <ChatbotDialogBlock />
         </div>
       </div>
     </>

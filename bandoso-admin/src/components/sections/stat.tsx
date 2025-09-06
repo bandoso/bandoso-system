@@ -1,6 +1,6 @@
 import { countAreas } from "@/services/areas.service";
-import { countPanoramas } from "@/services/panoramas.service";
 import { countVisitLogs } from "@/services/visitor_logs.service";
+import { countHotspots } from "@/services/hotspots.service";
 import { useEffect, useState } from "react";
 import { NumberTicker } from "@/components/magicui/number-ticket";
 
@@ -10,17 +10,18 @@ import GradientCardBlock from "../blocks/GradientCardBlock";
 export function StatsSection() {
   const [totalVisitorLogs, setTotalVisitorLogs] = useState(0);
   const [totalAreas, setTotalAreas] = useState(0);
-  const [totalPanoramas, setTotalPanoramas] = useState(0);
+  const [totalHotspots, setTotalHotspots] = useState(0);
 
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const [visitorLogsCount, areasCount, panoramasCount] =
-          await Promise.all([countVisitLogs(), countAreas(), countPanoramas()]);
+        const [visitorLogsCount, areasCount, hotspotsCount] = await Promise.all(
+          [countVisitLogs(), countAreas(), countHotspots()]
+        );
 
         setTotalVisitorLogs(visitorLogsCount);
         setTotalAreas(areasCount);
-        setTotalPanoramas(panoramasCount);
+        setTotalHotspots(hotspotsCount);
       } catch (error) {
         console.error("Failed to fetch stats:", error);
       }
@@ -38,8 +39,8 @@ export function StatsSection() {
           </TextAnimate>
         </h2>
 
-        <div className="mt-4 sm:mt-8 grid sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-5 justify-center">
-          <GradientCardBlock className="!p-4 col-span-2">
+        <div className="mt-4 sm:mt-8 grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-5 justify-center">
+          <GradientCardBlock className="!p-4 col-span-1 md:col-span-2">
             <span className="text-5xl md:text-6xl font-bold text-white text-shadow-md">
               <NumberTicker value={totalVisitorLogs} />+
             </span>
@@ -52,18 +53,18 @@ export function StatsSection() {
             <span className="text-5xl md:text-6xl font-bold text-white text-shadow-md">
               <NumberTicker value={totalAreas} />
             </span>
-            <p className="mt-6 font-semibold text-xl font-bold">địa điểm</p>
+            <p className="mt-6 font-semibold text-xl font-bold">khu vực</p>
             <p className="mt-2 text-[17px] text-white">
               đã được cập nhật lên hệ thống.
             </p>
           </GradientCardBlock>
-          <GradientCardBlock className="!p-4 col-span-1    ">
+          <GradientCardBlock className="!p-4 col-span-1">
             <span className="text-5xl md:text-6xl font-bold text-white text-shadow-md">
-              <NumberTicker value={totalPanoramas} />
+              <NumberTicker value={totalHotspots} />
             </span>
-            <p className="mt-6 font-semibold text-xl font-bold">điểm nhìn</p>
+            <p className="mt-6 font-semibold text-xl font-bold">địa điểm</p>
             <p className="mt-2 text-[17px] text-white">
-              đã được số hóa thành công trong các địa điểm.
+              đã được thêm vào các khu vực.
             </p>
           </GradientCardBlock>
         </div>
