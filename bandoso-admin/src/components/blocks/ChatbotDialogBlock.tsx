@@ -84,14 +84,14 @@ const ChatbotDialogBlock = () => {
         </div>
       </PopoverTrigger>
       <PopoverContent
-        className="glass glass-light text-white border border-white/20 w-96 h-[500px] p-0"
+        className="glass glass-light text-white border border-white/20 w-[calc(100vw-1rem)] sm:w-96 h-[80vh] sm:h-[500px] p-0"
         align="end"
-        side="left"
+        side="top"
         sideOffset={10}
       >
         <div className="flex h-full w-full flex-col overflow-hidden">
           {/* Header */}
-          <div className="p-4 border-b border-white/20">
+          <div className="p-3 sm:p-4 border-b border-white/20">
             <div className="flex items-center gap-2">
               <RiChatAiFill className="text-white w-5 h-5" />
               <h3 className="text-white font-medium">Chatbot</h3>
@@ -99,28 +99,28 @@ const ChatbotDialogBlock = () => {
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4">
             {messages.map((message) => (
-              <div key={message.id} className="flex gap-3">
+              <div key={message.id} className="flex gap-2 sm:gap-3">
                 <div className="flex-shrink-0">
                   <div
                     className={cn(
-                      "w-8 h-8 rounded-full flex items-center justify-center",
+                      "w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center",
                       message.role === "user"
                         ? "bg-blue-500/30 border border-blue-600/30"
                         : "glass border border-white/20"
                     )}
                   >
                     {message.role === "user" ? (
-                      <FiUser className="w-4 h-4 text-white" />
+                      <FiUser className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                     ) : (
-                      <RiChatAiFill className="w-4 h-4 text-white" />
+                      <RiChatAiFill className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                     )}
                   </div>
                 </div>
                 <div
                   className={cn(
-                    "flex-1 p-3 rounded-lg text-sm",
+                    "flex-1 p-2 sm:p-3 rounded-lg text-xs sm:text-sm",
                     message.role === "user"
                       ? "bg-blue-500/30 border border-blue-600/30"
                       : "glass-light border border-white/20"
@@ -132,15 +132,15 @@ const ChatbotDialogBlock = () => {
             ))}
 
             {isLoading && (
-              <div className="flex gap-3">
+              <div className="flex gap-2 sm:gap-3">
                 <div className="flex-shrink-0">
-                  <div className="w-8 h-8 rounded-full glass border border-white/20 flex items-center justify-center">
-                    <RiChatAiFill className="w-4 h-4 text-white" />
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full glass border border-white/20 flex items-center justify-center">
+                    <RiChatAiFill className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                   </div>
                 </div>
-                <div className="flex-1 p-3 rounded-lg text-sm glass-light border border-white/20">
+                <div className="flex-1 p-2 sm:p-3 rounded-lg text-xs sm:text-sm glass-light border border-white/20">
                   <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                    <div className="w-3 h-3 sm:w-4 sm:h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
                     <span>Đang suy nghĩ...</span>
                   </div>
                 </div>
@@ -149,11 +149,11 @@ const ChatbotDialogBlock = () => {
           </div>
 
           {/* Input Area */}
-          <div className="p-4 border-t border-white/20">
+          <div className="p-3 sm:p-4 border-t border-white/20">
             {/* Suggestion Pills */}
             {!isLoading && (
               <div className="mb-3">
-                <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-2">
+                <div className="flex flex-wrap sm:flex-nowrap gap-2 overflow-x-auto scrollbar-hide pb-2">
                   {[
                     "Địa điểm này ở đâu?",
                     "Giới thiệu về lịch sử nơi này",
@@ -174,7 +174,10 @@ const ChatbotDialogBlock = () => {
               </div>
             )}
 
-            <form onSubmit={handleFormSubmit} className="flex gap-2">
+            <form
+              onSubmit={handleFormSubmit}
+              className="flex flex-col sm:flex-row gap-2"
+            >
               <input
                 type="text"
                 value={inputValue}
@@ -187,7 +190,7 @@ const ChatbotDialogBlock = () => {
                 type="submit"
                 disabled={!inputValue.trim() || isLoading}
                 size="sm"
-                className="glass glass-hover text-white border border-white/20 hover:border-white/40"
+                className="glass glass-hover text-white border border-white/20 hover:border-white/40 sm:w-auto w-full"
               >
                 Gửi
               </Button>

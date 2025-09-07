@@ -159,7 +159,7 @@ const AreaSearchBlock = () => {
             ref={buttonRef}
             onClick={() => setAreaSearchDialogOpen(true)}
             size="lg"
-            className="px-1 cursor-pointer rounded-full glass  glass-hover border-white/90 !text-white text-base shadow-none"
+            className="px-2 cursor-pointer rounded-full glass  glass-hover border-white/90 !text-white text-base shadow-none"
           >
             <div className="hidden sm:flex items-center gap-2">
               Tìm kiếm địa điểm <Search className="!h-5 !w-5" />
